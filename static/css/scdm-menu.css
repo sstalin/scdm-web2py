@@ -1,0 +1,47 @@
+.menu-container, #scdm-view{
+    position: absolute;
+    top:50px;
+    bottom: 0;
+    left:0;
+    right:0;
+}
+
+.menu-tray {
+    width: 75%;
+    height: auto;
+    min-height: 50%;
+    max-height: 100%;
+    position: absolute;
+    background-color: #FFF;
+    top:0;
+    right:75%;
+    display: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 2;
+}
+
+.menu-tray.on{
+display: block;
+right:0;
+}
+
+.overlay {
+    opacity: 0;
+    background: #000;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+    overflow: hidden;
+}
+
+.overlay.on {
+    opacity: 0.5;
+    display: block;
+}
