@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+
+<div id="index-container" class="container-fluid">
+
+    <div class="row">
+        <aside class="col-xs-4">
+            <span class="glyphicon glyphicon-user scdm-icon-large"></span>
+        </aside>
+        <section class="col-xs-8">
+            <h4>Registered users have access to their organization data layers</h4>
+        </section>
+        <!--<h2 class="text-right"><span> LOGIN</span> <span class="scdm-icon-arrow-r"></span></h2>-->
+        {{=A(H2(SPAN("LOGIN"),SPAN('', _class="scdm-icon-arrow-r"), _class="text-right"), _href='scdm/default/user/login')}}
+    </div>
+
+    <hr>
+    <div class="row">
+        <aside class="col-xs-4 pull-left">
+            <img class="img-responsive img-rounded"
+                 src="http://www.techmerry.com/wp-content/uploads/2014/08/Implement-GPS-data-for-your-Google-MAP.gif">
+        </aside>
+        <section class="pull-right col-xs-8">
+            <h4>Data Map displays NGS data, shows the quality and the type of control stations available.</h4>
+        </section>
+        <h2 class="text-right"><span> DATA MAP</span> <span class="scdm-icon-arrow-r"></span></h2>
+    </div>
+    <hr>
+    <div class="row">
+        <aside class="col-xs-4 pull-left">
+            <span class="glyphicon glyphicon-envelope scdm-icon-large"></span>
+        </aside>
+        <section class="pull-right col-xs-8">
+            <h4>Send us feedback to improve the quality of the product.</h4>
+        </section>
+        <h2 class="text-right"><span> SEND FEEDBACK</span> <span class="scdm-icon-arrow-r"></span></h2>
+    </div>
+    <hr>
+</div>
