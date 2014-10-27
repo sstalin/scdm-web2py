@@ -291,3 +291,14 @@
 .scdm-icon-large{
     font-size: 4em;
 }
+
+.scdm-icon-menu{
+    color: #c6cecc;
+    font-size: 3em;
+    line-height: 50px;
+}
+
+.scdm-icon-menu:active{
+    color: orange;
+
+}

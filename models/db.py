@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#########################################################################
-## This scaffolding model makes your app work on Google App Engine too
+# ########################################################################
+# # This scaffolding model makes your app work on Google App Engine too
 ## File is released under public domain and you can use without limitations
 #########################################################################
 
@@ -9,9 +9,11 @@
 ## be redirected to HTTPS, uncomment the line below:
 # request.requires_https()
 
+DEBUG = True
+
 if not request.env.web2py_runtime_gae:
     ## if NOT running on Google App Engine use SQLite or other DB
-    db = DAL('sqlite://storage.sqlite',pool_size=1,check_reserved=['all'])
+    db = DAL('sqlite://storage.sqlite', pool_size=1, check_reserved=['all'])
 else:
     ## connect to Google BigTable (optional 'google:datastore://namespace')
     db = DAL('google:datastore+ndb')
@@ -24,7 +26,7 @@ else:
 
 ## by default give a view/generic.extension to all actions from localhost
 ## none otherwise. a pattern can be 'controller/function.extension'
-response.generic_patterns = ['*'] if request.is_local else []
+response.generic_patterns = ['*']  #if request.is_local else []
 
 ## (optional) optimize handling of static files
 # response.optimize_css = 'concat,minify,inline'
@@ -48,6 +50,11 @@ service = Service()
 plugins = PluginManager()
 
 ## create all tables needed by auth if not custom tables
+auth.settings.extra_fields['auth_user'] = [
+    Field('is_administrator', 'boolean', default=DEBUG, writable=DEBUG),
+]
+
+## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
 ## configure email
@@ -64,6 +71,7 @@ auth.settings.reset_password_requires_verification = True
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
 from gluon.contrib.login_methods.janrain_account import use_janrain
+
 use_janrain(auth, filename='private/janrain.key')
 
 #########################################################################
@@ -85,3 +93,5 @@ use_janrain(auth, filename='private/janrain.key')
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
+
+

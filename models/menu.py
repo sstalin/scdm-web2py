@@ -2,11 +2,14 @@
 # this file is released under public domain and you can use without limitations
 
 # ########################################################################
-## Customize your APP title, subtitle and menus here
-#########################################################################
+# # Customize your APP title, subtitle and menus here
+# ########################################################################
 
-response.logo = A(B('SCDM'), XML('&trade;&nbsp;'),
-                  _class="brand", _href="/scdm")
+# response.logo = A(B('SCDM'), XML('&trade;&nbsp;'),
+#                   _class="brand", _href="/scdm")
+response.logo = A(B('SCDM'),
+                  XML('&trade;&nbsp;'),
+                  _class="scdm-logo brand", _href="/scdm")
 response.title = request.application.replace('_', ' ').title()
 response.subtitle = ''
 
@@ -25,12 +28,11 @@ response.google_analytics_id = None
 SCDM_MENU = True
 
 if SCDM_MENU:
-    response.menu = []
-
-
-response.menu = [
-    (T('SCDM'), True, URL('default', 'index'), [])
-]
+    response.menu = [
+        (DIV(IMG(_src=URL('static/images', 'layers-128.png'), _class="img-responsive col-xs-4"),
+             H4("DATA LAYERS", _class="col-xs-8"), _class="row")
+         , False, URL('default', 'index'), [])
+    ]
 
 DEVELOPMENT_MENU = False
 
@@ -150,7 +152,7 @@ if DEVELOPMENT_MENU:
     _()
 
 if SCDM_MENU:
-   scdm_menu()
+    scdm_menu()
 
 if "auth" in locals():
     auth.wikimenu()

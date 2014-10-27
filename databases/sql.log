@@ -78,3 +78,86 @@ DROP TABLE hero;
 success!
 DROP TABLE person;
 success!
+timestamp: 2014-10-20T21:45:09.063188
+CREATE TABLE animal(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+DROP TABLE animal;
+success!
+timestamp: 2014-10-20T22:02:49.757779
+CREATE TABLE person(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+DROP TABLE person;
+success!
+timestamp: 2014-10-20T22:06:33.614723
+CREATE TABLE emp(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    dept CHAR(512)
+);
+success!
+timestamp: 2014-10-20T22:08:32.257286
+CREATE TABLE company(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    deptNo CHAR(512),
+    deptName CHAR(512)
+);
+success!
+DELETE FROM company;
+DELETE FROM sqlite_sequence WHERE name='company';
+success!
+DROP TABLE company;
+success!
+timestamp: 2014-10-24T15:30:23.782511
+CREATE TABLE organization(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512) UNIQUE,
+    accounts CHAR(512)
+);
+success!
+timestamp: 2014-10-24T15:30:23.786187
+CREATE TABLE membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    organization INTEGER REFERENCES organization (id) ON DELETE CASCADE,
+    auth_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    role CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2014-10-24T16:26:49.382234
+ALTER TABLE auth_user ADD is_administrator CHAR(1);
+success!
+success!
+timestamp: 2014-10-24T16:35:41.170835
+CREATE TABLE project(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    city CHAR(512),
+    proj_state CHAR(512),
+    proj_origin DOUBLE,
+    point_count INTEGER
+);
+success!
+timestamp: 2014-10-24T16:41:01.299968
+ALTER TABLE project ADD organization INTEGER REFERENCES organization (id) ON DELETE CASCADE;
+success!
+timestamp: 2014-10-26T22:30:44.280708
+CREATE TABLE projects(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    organization INTEGER REFERENCES organization (id) ON DELETE CASCADE,
+    city CHAR(512),
+    proj_state CHAR(512),
+    proj_origin DOUBLE,
+    point_count INTEGER
+);
+success!

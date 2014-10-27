@@ -51,6 +51,7 @@ response.files.insert(5,URL('static','css/scdm-basic.css'))
 response.files.insert(6,URL('static','css/scdm-bootstrap.css'))
 response.files.insert(7,URL('static','css/scdm-menu.css'))
 }}
+
 {{include 'web2py_ajax.html'}}
 
 {{
@@ -79,14 +80,13 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
         <div class="container">
         {{is_mobile=request.user_agent().is_mobile}}
             <!-- the next tag is necessary for bootstrap menus, do not remove -->
-            <button id="menu-btn" type="button" class="btn btn-navbar" data-toggle="collapse"
+            <!--<button id="menu-btn" type="button" class="btn btn-navbar" data-toggle="collapse"
                     data-target=".nav-collapse" style="{{='display:none;' if not is_mobile else ''}}">
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+             </button>-->
+            <span id="menu-btn" class="scdm-icon-menu pull-right"></span>
         {{=response.logo or ''}}
-            <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>
+            <!--<ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>-->
 
             <!--/.nav-collapse -->
         </div>
@@ -97,9 +97,7 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
 <div class="menu-container">
     <div class="overlay"></div>
     <div class="menu-tray">
-    {{if response.menu:}}
-          {{=MENU(response.menu)}}
-          {{pass}}
+    {{include "menu.html"}}
     </div>
 </div>
 <div id="scdm-view">
@@ -154,6 +152,26 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
 <!-- End Google Analytics -->
 {{pass}}
 <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
+
+<!-- Google Map API -->
+{{if request.controller == 'map': }}
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUCfUDlPNC-vtnlyJ1XNs-sFU0UurSsn4">
+</script>
+<script type="text/javascript">
+    function initialize() {
+        var longitude = {{=longitude}};
+        var latitude = {{=latitude}};
+        var mapOptions = {
+            center: { lat: latitude, lng: longitude},
+            zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{{pass}}
 </body>
 </html>
 

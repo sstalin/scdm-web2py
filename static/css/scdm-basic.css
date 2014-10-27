@@ -63,7 +63,7 @@ ul, ol, dl {
     list-style-image: none;
     list-style-position: inside;
 }
-ul {list-style-type: disc;}
+ul {list-style-type: none;}
 ol {list-style-type: decimal;}
 dl {list-style-type: decimal;}
 ol ol, ol ul, ul ul, ul ol {
@@ -122,80 +122,9 @@ a:active {color:#003399;}/* selected link */
     -webkit-perspective: none;
     -webkit-backface-visibility: hidden;
 }
-.empty-class {
-    color:inherit;
-}
-.shop-list {list-style: none outside none; margin-left: 0;}
 
-/*
-## Store Services List
-### Services Icons
- */
-.services-list {list-style: none outside none; margin: 0;}
-.services-list li {display: block; width: 100%; clear: both;}
-.services-list .button-icon,
-.services-list .button-text {float: left;}
-.services-list .button-icon {}
-.services-list .button-text { height: auto; margin-top: .25em}
 
-/*
-```
-<ul class="services-list">
-    <li>
-        <span class="button-icon sf-icon-home"></span>
-        <span class="button-text">Home</span>
-    </li>
-</ul>
-```
- */
 
-/*
-## List styles */
-.list-plain, .scrollThis {list-style: none outside none;}
-#recommendedProducts ul,
-.field-text,
-.field-error,
-.list-nobullet,
-.list-results,
-.list-notifications {
-    /*background: #eee;*/
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-indent: 0;
-    text-align: left;
-    list-style: none outside none;
-    float: left;
-}
-#recommendedProducts ul li,
-.list-results li,
-.list-notifications li {
-    background: white;
-    padding:10px;
-    margin:0 0 10px;
-    text-align: left;
-}
-.notification-userWelcome {display: none !important;}
-#recommendedProducts ul li {
-    padding:20px 10px 0;
-    margin:0;
-}
-.list-nobullet li {
-    text-align: left;
-    margin: 0;
-    padding: 0;
-}
-.read-true {border-left: none !important;}
-.read-false {border-left: 0.3em solid #FFD02C !important;}
-.present-false {opacity: 0.5 !important}
-
-/*
-## Utility styles
-### Horizontal Rule
-```
-<hr>
-```
-*/
 hr {background:none;
     border:none;
     border-bottom:1px solid #d0d0d0;
@@ -237,12 +166,17 @@ hr.hrSimple {}
    border: none;
 }
 
-#index-container{
+.scdm-container, .menu-content{
    width: 100%;
 padding: 0 10px;
 }
 
-#index-container .row{
+.scdm-logo{
+    line-height: 50px;
+    font-size: 1.6em;
+}
+
+.scdm-container .row{
 padding:15px 0;
 }
 

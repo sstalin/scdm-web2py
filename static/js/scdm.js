@@ -12,9 +12,9 @@ $(document).ready(function () {
         } else {
             overlay.addClass('on');
         }
-        if(menuTray.hasClass('on')){
+        if (menuTray.hasClass('on')) {
             menuTray.removeClass('on');
-        }else{
+        } else {
             menuTray.addClass('on');
         }
 

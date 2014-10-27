@@ -26,6 +26,14 @@ display: block;
 right:0;
 }
 
+.menu-tray .row section {
+    padding: 0;
+}
+.menu-tray form fieldset{
+    text-align: center;
+    padding: 0 15%;
+}
+
 .overlay {
     opacity: 0;
     background: #000;
