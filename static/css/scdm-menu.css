@@ -1,9 +1,9 @@
-.menu-container, #scdm-view{
+.menu-container, #scdm-view {
     position: absolute;
-    top:50px;
+    top: 50px;
     bottom: 0;
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
 }
 
 .menu-tray {
@@ -13,25 +13,29 @@
     max-height: 100%;
     position: absolute;
     background-color: #FFF;
-    top:0;
-    right:75%;
+    top: 0;
+    right: 75%;
     display: none;
     overflow-y: scroll;
     overflow-x: hidden;
     z-index: 2;
 }
 
-.menu-tray.on{
-display: block;
-right:0;
+.menu-tray.on {
+    display: block;
+    right: 0;
 }
 
 .menu-tray .row section {
     padding: 0;
 }
-.menu-tray form fieldset{
-    text-align: center;
-    padding: 0 15%;
+
+.menu-tray form fieldset {
+    text-align: left;
+    padding: 0 15px;
+}
+.menu-tray form fieldset p{
+    margin-bottom: 0.5em;
 }
 
 .overlay {

@@ -1,10 +1,8 @@
 db.define_table(
-    'organizationMarkers',
-    Field('pid', required=True),
-    Field('ptName', 'string'),
-    Field('Lat', 'double'),
-    Field('Long', 'double'),
-    Field('description', 'string'),
-    Field('project', 'reference project'),
-    Field('organization', 'reference organization'),
-)
+    'layer',
+    Field('name', requires=NE),
+    Field('organization', 'reference organization', readable=False, writable=False),
+    Field('filename', 'upload', label='Content'),
+    Field('updated_on', 'datetime', update=request.now),
+    Field('updated_by', db.auth_user, update=auth.user_id),
+auth.signature)

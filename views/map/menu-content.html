@@ -1,0 +1,17 @@
+<hr>
+<div class="row">
+    <aside class="col-xs-3">
+    {{=IMG(_src=URL('static/images', 'layers-128.png'), _class="img-responsive")}}
+    </aside>
+    <section class="col-xs-9">
+        <h4 style="line-height: 40px">DATA LAYERS</h4>
+    </section>
+</div>
+<form>
+{{for layer in response.layers:}}
+    <fieldset>
+        <input type="checkbox">
+        <label><p>{{=layer}}</p></label>
+    </fieldset>
+{{pass}}
+</form>

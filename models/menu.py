@@ -28,11 +28,7 @@ response.google_analytics_id = None
 SCDM_MENU = True
 
 if SCDM_MENU:
-    response.menu = [
-        (DIV(IMG(_src=URL('static/images', 'layers-128.png'), _class="img-responsive col-xs-4"),
-             H4("DATA LAYERS", _class="col-xs-8"), _class="row")
-         , False, URL('default', 'index'), [])
-    ]
+    response.menu = []
 
 DEVELOPMENT_MENU = False
 
