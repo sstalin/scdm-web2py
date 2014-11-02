@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # this file is released under public domain and you can use without limitations
 
-#########################################################################
+# ########################################################################
 ## This is a sample controller
 ## - index is the default action of any application
 ## - user is required for authentication and authorization
@@ -17,7 +17,8 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-
+    if auth.is_logged_in():
+        response.user_info = get_user_info()
     if request.user_agent().is_mobile:
         return response.render('../views/default/index-m.html')
     else:
@@ -39,7 +40,8 @@ def user():
         @auth.requires_permission('read','table name',record_id)
     to decorate functions that need access control
     """
-    return dict(form=auth())
+    form = auth()
+    return dict(form=form)
 
 
 @cache.action()
@@ -61,14 +63,15 @@ def call():
     return service()
 
 
-@auth.requires_login() 
+@auth.requires_login()
 def api():
     """
     this is example of API with access control
     WEB2PY provides Hypermedia API (Collection+JSON) Experimental
     """
     from gluon.contrib.hypermedia import Collection
+
     rules = {
-        '<tablename>': {'GET':{},'POST':{},'PUT':{},'DELETE':{}},
-        }
-    return Collection(db).process(request,response,rules)
+        '<tablename>': {'GET': {}, 'POST': {}, 'PUT': {}, 'DELETE': {}},
+    }
+    return Collection(db).process(request, response, rules)

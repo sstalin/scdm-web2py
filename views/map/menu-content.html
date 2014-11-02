@@ -1,10 +1,20 @@
+{{if auth.is_logged_in():}}
+<div class="row">
+    <aside class="col-xs-3">
+    {{=IMG(_src=URL('static/images', 'settings-icon.png'), _class="img-responsive")}}
+    </aside>
+    <section class="col-xs-9">
+        <h4 style="line-height: 40px">Manage Layers</h4>
+    </section>
+</div>
+{{pass}}
 <hr>
 <div class="row">
     <aside class="col-xs-3">
     {{=IMG(_src=URL('static/images', 'layers-128.png'), _class="img-responsive")}}
     </aside>
     <section class="col-xs-9">
-        <h4 style="line-height: 40px">DATA LAYERS</h4>
+        <h4 style="line-height: 40px">Available Layers</h4>
     </section>
 </div>
 <form>

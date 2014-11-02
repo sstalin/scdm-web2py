@@ -2,16 +2,9 @@
 
 {{if request.controller == 'map':}}
 {{include 'map/menu-content.html'}}
-
 {{pass}}
 
-
-    <!--
-        <form>
-            <fieldset>
-                <input type="checkbox">
-                <label>NGS Horizontal(2D)</label>
-            </fieldset>
-        </form>-->
-
+{{if request.controller == 'default':}}
+{{include 'default/menu-content.html'}}
+{{pass}}
 </div>
