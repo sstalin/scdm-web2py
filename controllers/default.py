@@ -2,12 +2,13 @@
 # this file is released under public domain and you can use without limitations
 
 # ########################################################################
-## This is a sample controller
-## - index is the default action of any application
-## - user is required for authentication and authorization
-## - download is for downloading files uploaded in the db (does streaming)
-## - api is an example of Hypermedia API support and access control
-#########################################################################
+# # This is a sample controller
+# # - index is the default action of any application
+# # - user is required for authentication and authorization
+# # - download is for downloading files uploaded in the db (does streaming)
+# # - api is an example of Hypermedia API support and access control
+# ########################################################################
+
 
 def index():
     """
@@ -41,6 +42,22 @@ def user():
     to decorate functions that need access control
     """
     form = auth()
+    return dict(form=form)
+
+
+@auth.requires_login()
+def set_organization():
+    form = SQLFORM(db.organization, labels={'name': ''})
+    if form.process().accepted:
+        org_id = form.vars.id
+        mem_id = set_membership(auth.user_id, org_id, MANAGER)
+        session.flash = "Organization: " + form.vars.name + " was created"
+        redirect(URL('index'))
+    elif form.errors:
+        if form.errors.name == 'Value already in database or empty':
+            response.flash = form.vars.name + " name exist in database!"
+            form.errors.name = None
+
     return dict(form=form)
 
 

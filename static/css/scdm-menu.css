@@ -35,8 +35,13 @@
     text-align: left;
     padding: 0 15px;
 }
-.menu-tray form fieldset p{
+
+.menu-tray form fieldset p {
     margin-bottom: 0.5em;
+}
+
+.menu-tab {
+    padding: 10px 0;
 }
 
 .overlay {

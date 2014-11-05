@@ -1,36 +1,45 @@
 __author__ = 'sstalin'
 
 NE = IS_NOT_EMPTY()
-ADMIN, USER = "admin", "user"
+MANAGER, USER = "data_manager", "user"
 
 # initially each organization will have up to 10 accounts
 db.define_table(
     "organization",
-    Field('name', unique=True, required=True),
-    format='%(name)s'
+    Field('name', 'string', requires=NE),
+    Field('members', 'integer', readable=False, writable=False, default=1)
 )
+
+db.organization.name.requires = IS_NOT_IN_DB(db, 'organization.name')
 
 db.define_table(
     'membership',
+    Field('auth_user', 'reference auth_user', readable=False, writable=False),
     Field('organization', 'reference organization'),
-    Field('auth_user', 'reference auth_user'),
-    Field('role', requires=IS_IN_SET((ADMIN, USER))),
+    Field('role', requires=IS_IN_SET((MANAGER, USER))),
     auth.signature)
 
 db.membership.auth_user.requires = IS_NOT_IN_DB(db(db.membership.organization == request.vars.organization),
                                                 'membership.auth_user')
+# db.membership.organization.requires = IS_IN_DB(db, db.organization.id, '%(name)s')
+# db.membership.auth_user.requires = IS_IN_DB(db, db.auth_user.id, '%(email)s')
+
 
 db.define_table(
     'layer',
     Field('name', requires=NE),
     Field('organization', 'reference organization', readable=False, writable=False),
-    Field('filename', 'upload', label='Content'),
-    Field('updated_on', 'datetime', update=request.now),
-    Field('updated_by', db.auth_user, update=auth.user_id),
+    Field('description', 'text'),
+    Field('filename', 'upload', label='Upload KML: ', autodelete=True),
     auth.signature)
 
 
 def get_user_info(user=auth.user_id):
+    """
+    Retrieves default user information, or information for given user_id
+    :param user: user_id
+    :return: User info object as dictionary
+    """
     if user:
         row = db(db.membership.auth_user == user).select().first()
         organization_id = None
@@ -44,6 +53,10 @@ def get_user_info(user=auth.user_id):
                     organization_id=organization_id)
     else:
         return {}
+
+
+def set_membership(user=auth.user_id, org_id=None, role='user'):
+    return db.membership.insert(auth_user=user, organization=org_id, role=role)
 
 
 if db(db.auth_user).isempty():
@@ -60,5 +73,5 @@ if db(db.auth_user).isempty():
     populate(db.auth_user, 8)
     populate(db.membership, 10)
 
-    db(db.membership.auth_user < 3).update(role=ADMIN)
+    db(db.membership.auth_user < 3).update(role= MANAGER)
     db(db.auth_user.id > 2).update(is_administrator=False)
