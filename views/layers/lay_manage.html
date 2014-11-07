@@ -1,0 +1,33 @@
+{{extend 'layout.html'}}
+<style>
+    form textarea {
+        max-height: 80px;
+    }
+</style>
+<div class="scdm-container">
+{{=form.custom.begin}}
+    <label><h4>Layer Name:</h4></label>
+
+    <div>{{=form.custom.widget.name}}</div>
+    <br>
+    <label><h4>Short Description:</h4></label>
+
+    <div>{{=form.custom.widget.description}}</div>
+    <br>
+    <label><h4>KML File:</h4></label>
+
+    <div>{{=form.custom.widget.filename}}</div>
+    <div class="text-right">
+    {{if btn_value == 'edit':}}
+        <!--{{=A(INPUT(_type='button',_value='Add New', _class='btn'), _href=URL('lay_manage'))}} -->
+        <input type="submit" value="Edit" class="btn">
+    {{elif btn_value == 'add':}}
+        <input type="submit" value="Add New" class="btn">
+    {{pass}}
+    </div>
+
+{{=form.custom.end}}
+    <br>
+    <label><h4><b>Layers:</b></h4></label>
+{{=LOAD('layers','lay_all',ajax=True)}}
+</div>

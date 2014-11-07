@@ -2,6 +2,7 @@ __author__ = 'sstalin'
 
 NE = IS_NOT_EMPTY()
 MANAGER, USER = "data_manager", "user"
+SHOW_FOOTER = False
 
 # initially each organization will have up to 10 accounts
 db.define_table(
@@ -26,11 +27,11 @@ db.membership.auth_user.requires = IS_NOT_IN_DB(db(db.membership.organization ==
 
 
 db.define_table(
-    'layer',
+    'layers',
     Field('name', requires=NE),
     Field('organization', 'reference organization', readable=False, writable=False),
-    Field('description', 'text'),
-    Field('filename', 'upload', label='Upload KML: ', autodelete=True),
+    Field('description', 'text', requires=IS_LENGTH(100)),
+    Field('filename', 'upload', autodelete=True),
     auth.signature)
 
 
@@ -73,5 +74,5 @@ if db(db.auth_user).isempty():
     populate(db.auth_user, 8)
     populate(db.membership, 10)
 
-    db(db.membership.auth_user < 3).update(role= MANAGER)
+    db(db.membership.auth_user < 3).update(role=MANAGER)
     db(db.auth_user.id > 2).update(is_administrator=False)

@@ -401,3 +401,10 @@ print\040db(db.membership).select()
 print\040db(db.organization).select()
 print\040db(db.layers).select()
 print\040db(db.layer).select()
+print\040db(db.layers).select()
+print\040db(db.layers).select('description')
+print\040db(db.layers).select('id')
+print\040db(db.layers).select('id',\040'name')
+rows\040=\040db(db.layers).select('id',\040'name')
+for\040row\040in\040rows:
+\040\040\040print\040row.id,\040row.name

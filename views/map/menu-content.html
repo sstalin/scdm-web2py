@@ -1,12 +1,14 @@
 {{if auth.is_logged_in():}}
-<div class="row">
-    <aside class="col-xs-3">
-    {{=IMG(_src=URL('static/images', 'settings-icon.png'), _class="img-responsive")}}
-    </aside>
-    <section class="col-xs-9">
-        <h4 style="line-height: 40px">Manage Layers</h4>
-    </section>
-</div>
+<a href="/scdm/layers/lay_manage">
+    <div class="row">
+        <aside class="col-xs-3">
+        {{=IMG(_src=URL('static/images', 'settings-icon.png'), _class="img-responsive")}}
+        </aside>
+        <section class="col-xs-9">
+            <h4 style="line-height: 40px">Manage Layers</h4>
+        </section>
+    </div>
+</a>
 {{pass}}
 <hr>
 <div class="row">
@@ -17,11 +19,11 @@
         <h4 style="line-height: 40px">Available Layers</h4>
     </section>
 </div>
-<form>
+
 {{for layer in response.layers:}}
-    <fieldset>
-        <input type="checkbox">
-        <label><p>{{=layer}}</p></label>
-    </fieldset>
+<fieldset>
+    <input type="checkbox">
+    <label><p>{{=layer}}</p></label>
+</fieldset>
 {{pass}}
-</form>
+

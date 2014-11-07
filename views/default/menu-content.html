@@ -1,0 +1,15 @@
+{{if not auth.is_logged_in():}}
+
+<a href="/scdm/default/user">{{=H2(SPAN("LOGIN"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+<hr>
+<a href="/scdm/default/user/register">{{=H2(SPAN("REGISTER"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+<hr>
+<a href="/scdm/default/user/retrieve_password">{{=H2(SPAN("LOST PASSWORD"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+
+{{else:}}
+<a href="/scdm/default/user/logout">{{=H2(SPAN("LOGOUT"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+<hr>
+<a href="/scdm/default/user/profile">{{=H2(SPAN("PROFILE"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+<hr>
+<a href="/scdm">{{=H2(SPAN("ADD PEOPLE"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+{{pass}}

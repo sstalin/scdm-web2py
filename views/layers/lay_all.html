@@ -1,0 +1,15 @@
+<ul>
+{{for layer in layers:}}
+    <li>
+          <hr>
+        <h4 class="lay-tab">
+            <span class="lay-name">{{=layer.name}}</span>
+            {{if request.controller == 'layers':}}
+                {{=A('Edit', _href=URL('lay_manage', args= [layer.id]), _class='right')}}
+            {{elif request.contrller == 'map':}}
+                <input type="checkbox" class="pull-right">
+            {{pass}}
+        </h4>
+    </li>
+{{pass}}
+</ul>

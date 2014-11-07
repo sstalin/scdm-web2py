@@ -19,7 +19,8 @@ def index():
     return auth.wiki()
     """
     if auth.is_logged_in():
-        response.user_info = get_user_info()
+        session.user_info = get_user_info()
+        response.user_info = session.user_info
     if request.user_agent().is_mobile:
         return response.render('../views/default/index-m.html')
     else:
@@ -47,10 +48,16 @@ def user():
 
 @auth.requires_login()
 def set_organization():
+    """
+    Creates form for registering organization and
+    creates membership.
+    :return: form
+    """
     form = SQLFORM(db.organization, labels={'name': ''})
     if form.process().accepted:
         org_id = form.vars.id
-        mem_id = set_membership(auth.user_id, org_id, MANAGER)
+        session.org_id = org_id
+        session.mem_id = set_membership(auth.user_id, org_id, MANAGER)
         session.flash = "Organization: " + form.vars.name + " was created"
         redirect(URL('index'))
     elif form.errors:
