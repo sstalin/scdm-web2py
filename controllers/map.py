@@ -7,3 +7,7 @@ def index():
 
 def set_up_layers():
     response.layers = ["NGS(3D)", "NGS(2D)", "NGS(1D)"]
+
+@cache.action()
+def download():
+    return response.download(request, db)

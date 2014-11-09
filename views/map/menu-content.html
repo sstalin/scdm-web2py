@@ -20,10 +20,13 @@
     </section>
 </div>
 
-{{for layer in response.layers:}}
-<fieldset>
-    <input type="checkbox">
-    <label><p>{{=layer}}</p></label>
-</fieldset>
-{{pass}}
+<ul>
+    <li class="list-item clearfix" ng-repeat="l in layers" ng-click="layToggle(this)">
+        <aside class="col-xs-2"><img src="{{=URL('static', 'images/icon-control-unselected-1-hori.png')}}"></aside>
+        <section class="col-xs-8">{[{l.name}]}</section>
+        <aside class="col-xs-2">
+            <div class="toggle" ng-class="(l.isSelected) ? 'on' : 'off'"></div>
+        </aside>
+    </li>
+</ul>
 

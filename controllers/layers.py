@@ -31,6 +31,17 @@ def download():
     return response.download(request, db)
 
 
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    return service()
+
+
+@service.json
 @auth.requires_login()
 def lay_all():
     """
@@ -38,7 +49,20 @@ def lay_all():
 
     :return: list of layers
     """
-    layers = db(db.layers.organization == session.user_info['organization_id']).select('name', 'id')
+    user_info = session.user_info or get_user_info(auth.user_id)
+    layers = db(db.layers.organization == user_info['organization_id']).select(orderby=~db.layers.created_on)
     return locals()
 
+
+@service.json
+@auth.requires_login()
+def lay_by_id():
+    """
+    Layer for given id
+
+    :return: layer
+    """
+    id = request.vars.id
+    layer = db(db.layers.id == id).select()
+    return dict(layer=layer)
 

@@ -12,7 +12,7 @@
     /*min-height: 50%;*/
     max-height: 100%;
     position: absolute;
-    background-color: #FFF;
+    background-color: #F7F6EC;
     top: 0;
     right: 75%;
     display: none;
@@ -40,6 +40,10 @@
     margin-bottom: 0.5em;
 }
 
+.menu-tray .list-item {
+    padding: 10px 0;
+}
+
 .menu-tab {
     padding: 10px 0;
 }
@@ -62,4 +66,37 @@
 .overlay.on {
     opacity: 0.5;
     display: block;
+}
+
+.toggle {
+    position: relative;
+    box-sizing: border-box;
+    width: 18px;
+    height: 10px;
+    border: 1px solid #464646;
+    background-color: #646464;
+    /*z-index: 100;*/
+}
+
+.toggle:after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffd200;
+    /*z-index: 100;*/
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+
+.toggle.off:after {
+    background-color: #A0A0A0;
+    left: 8px;
 }

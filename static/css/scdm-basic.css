@@ -304,3 +304,8 @@ hr.hrSimple {
     text-overflow: ellipsis;
     overflow-x: hidden;
 }
+
+.list-item{
+    padding: 10px;
+}
+
