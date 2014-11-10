@@ -38,8 +38,7 @@ angular.module('myApp.map', ['ngRoute'])
                 if (value) {
                     // Set mouseover event for each feature.
                     $scope.map.data.addListener('click', function (event) {
-//                        event.stopPropagation();
-                      //  alert(event.feature.getProperty('pid'));
+                        console.log(event.feature.getProperty('pid'));
                     });
                 }
             });

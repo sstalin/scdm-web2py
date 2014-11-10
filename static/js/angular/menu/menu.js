@@ -11,36 +11,117 @@ angular.module('myApp.menu', ['ngRoute'])
 
     .controller('MenuCtrl',
     [
-        '$scope', '$http',
-        function ($scope) {
+        '$scope', 'MenuSrvs',
+        function ($scope, MenuSrvs) {
             //TODO
             var MAP_SCOPE = angular.element('#map-canvas').scope();
 
-            $scope.layToggle = function (layer) {
-                var kmlLayer, url;
+            var overlay = angular.element(".overlay"),
+                menuBtn = angular.element("#menu-btn"),
+                menuTray = angular.element('.menu-tray'),
+                isMenuOn = false;
 
-                if (layer.l.isSelected) {
-                    // Hide the Data layer.
-                    map.data.setStyle({visible: false});
-                    layer.l.isSelected = false;
+            function toggleMenu() {
+                isMenuOn = !isMenuOn;
+
+                if (isMenuOn) {
+                    overlay.addClass('on');
+                    menuTray.addClass('on');
                 } else {
-                    map.data.setStyle(
-                        {
-                            visible: true,
-                            icon: "/scdm/static/images/icon-control-unselected-1-hori.png"
+                    overlay.removeClass('on');
+                    menuTray.removeClass('on');
+                    loadLayers();// loading geoJson data
+                }
+            }
+
+            menuBtn.click(toggleMenu);
+            overlay.click(toggleMenu);
+
+            function loadLayers() {
+                var geoJsonObj;
+                map.data.setStyle(
+                    {
+                        icon: "/scdm/static/images/icon-control-unselected-1-hori.png"
                     });
 
-                    url = '/scdm/map/download/' + layer.l.filename;
+                geoJsonObj = MenuSrvs.processQueue();
+                map.data.forEach(function (next) {
+                        map.data.remove(next);
+                    }
+                );
+                map.data.addGeoJson(geoJsonObj);
+            }
 
-                    // Load a GeoJSON from the same server as our demo.
-                    map.data.loadGeoJson(url);
-                    layer.l.isSelected = true;
+
+            $scope.layToggle = function (layer) {
+                if (layer.isSelected) {
+                    layer.isSelected = false;
+                } else {
+                    layer.isSelected = true;
                 }
             };
 
 
         }])
 
-    .service('MenuSrvs', [function () {
+    .service('MenuSrvs',
+    ['$http',
+        function ($http) {
+            var self = this;
 
-    }]);
+            self.queue = [];
+
+            function addGeoJSON(data, status, headers, config) {
+                if (status == 200) {
+                    self.queue[self.index] = data;
+                }
+            }
+
+            function removeGeoJSON(index) {
+                self.queue[index] = null;
+            }
+
+            this.processQueue = function () {
+                var geoJsonObj = { "type": "FeatureCollection",
+                    "features": []};
+                self.queue.forEach(function (next) {
+                    if (next) {
+                        geoJsonObj.features = geoJsonObj.features.concat(next.features);
+                    }
+                });
+                return geoJsonObj;
+            };
+
+            this.loadGeoJSON = function (layer, index) {
+                var lay_URL = '/scdm/map/download/' + layer.filename;
+
+                self.index = index;
+                // Load a GeoJSON
+                $http.get(lay_URL).
+                    success(addGeoJSON).
+                    error(function (data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+            };
+
+            this.unloadGeoJSON = function (index) {
+                removeGeoJSON(index);
+            };
+
+
+        }])
+
+    .directive('layMenuItem', function (MenuSrvs) {
+
+        return function (scope, element, attrs) {
+            scope.$watch('layer.isSelected', function (value) {
+                if (value == true) {
+                    MenuSrvs.loadGeoJSON(scope.layer, scope.$index);
+                } else if (value == false) {
+                    MenuSrvs.unloadGeoJSON(scope.$index);
+                }
+            });
+        }
+    });
+

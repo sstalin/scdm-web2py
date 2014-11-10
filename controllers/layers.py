@@ -66,3 +66,18 @@ def lay_by_id():
     layer = db(db.layers.id == id).select()
     return dict(layer=layer)
 
+
+@service.json
+@auth.requires_login()
+def lay_content_id():
+    """
+    Layer content from as stored file for given id
+
+    :return: layer
+    """
+    from gluon import fileutils
+
+    id = request.vars.id
+    filename = db(db.layers.id == id).select('filename')
+    content = fileutils.read_file(filename, mode='r')
+    return dict(content=content)
