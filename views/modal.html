@@ -1,0 +1,15 @@
+<div class="modal-container">
+    <div class="modal-header clearfix">
+        <span class="pull-left">Feature</span>
+        <span class="pull-right" ng-click="toggleModal()">X</span>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="key in keys">
+                <span class="pull-left">{[{key}]}</span>
+                <span class="pull-right">{[{properties[key]}]}</span>
+                <hr>
+            </li>
+        </ul>
+    </div>
+</div>
