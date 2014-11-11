@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.menu', ['ngRoute'])
+angular.module('myApp.menu', ['ngRoute', 'myApp.map'])
 
     .config(['$routeProvider', function ($routeProvider) {
 //        $routeProvider.when('/view1', {
@@ -11,19 +11,16 @@ angular.module('myApp.menu', ['ngRoute'])
 
     .controller('MenuCtrl',
     [
-        '$scope', 'MenuSrvs',
-        function ($scope, MenuSrvs) {
-            //TODO
-            var MAP_SCOPE = angular.element('#map-canvas').scope();
-
+        '$rootScope', '$scope', 'MenuSrvs', 'MapSrvs',
+        function ($rootScope, $scope, MenuSrvs, MapSrvs) {
             var overlay = angular.element(".overlay"),
                 menuBtn = angular.element("#menu-btn"),
                 menuTray = angular.element('.menu-tray'),
                 isMenuOn = false;
 
+
             function toggleMenu() {
                 isMenuOn = !isMenuOn;
-
                 if (isMenuOn) {
                     overlay.addClass('on');
                     menuTray.addClass('on');
@@ -34,22 +31,29 @@ angular.module('myApp.menu', ['ngRoute'])
                 }
             }
 
-            menuBtn.click(toggleMenu);
-            overlay.click(toggleMenu);
+
+            menuBtn.click(function (e) {
+                if($rootScope.isModalOn){
+                    $rootScope.toggleModal();
+                }
+                toggleMenu();
+            });
+
+            overlay.click(function (e) {
+                toggleMenu();
+            });
+
 
             function loadLayers() {
-                var geoJsonObj;
+                MapSrvs.resetDataLayer();
+                MenuSrvs.processQueue();
+
                 map.data.setStyle(
                     {
                         icon: "/scdm/static/images/icon-control-unselected-1-hori.png"
                     });
 
-                geoJsonObj = MenuSrvs.processQueue();
-                map.data.forEach(function (next) {
-                        map.data.remove(next);
-                    }
-                );
-                map.data.addGeoJson(geoJsonObj);
+                map.data.addListener('click', $rootScope.popModal);
             }
 
 
@@ -81,15 +85,23 @@ angular.module('myApp.menu', ['ngRoute'])
                 self.queue[index] = null;
             }
 
+
             this.processQueue = function () {
-                var geoJsonObj = { "type": "FeatureCollection",
-                    "features": []};
+
+//                var geoJsonObj = { "type": "FeatureCollection",
+//                    "features": []};
+//                self.queue.forEach(function (next) {
+//                    if (next) {
+//                        geoJsonObj.features = geoJsonObj.features.concat(next.features);
+//                    }
+//                });
+//                return geoJsonObj;
+
                 self.queue.forEach(function (next) {
                     if (next) {
-                        geoJsonObj.features = geoJsonObj.features.concat(next.features);
+                        map.data.addGeoJson(next);
                     }
                 });
-                return geoJsonObj;
             };
 
             this.loadGeoJSON = function (layer, index) {

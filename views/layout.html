@@ -50,6 +50,7 @@ response.files.insert(4,URL('static','css/icons.css'))
 response.files.insert(5,URL('static','css/scdm-basic.css'))
 response.files.insert(6,URL('static','css/scdm-bootstrap.css'))
 response.files.insert(7,URL('static','css/scdm-menu.css'))
+response.files.insert(8,URL('static','css/scdm-modal.css'))
 }}
 
 {{include 'web2py_ajax.html'}}
@@ -100,14 +101,18 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
     {{include "menu.html"}}
     </div>
 </div>
+
 {{if request.controller == 'map': }}
+<div id="modal" ng-controller="ModalCtrl">
+    <div class="modal-overlay"></div>
+{{include "modal.html"}}
+</div>
 <div id="scdm-view" ng-controller="MapCtrl">
 {{else:}}
     <div id="scdm-view">
     {{pass}}
 {{include}}
     </div>
-
 
     <!-- Footer ================================================== -->
 {{if SHOW_FOOTER:}}
@@ -172,7 +177,7 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
             zoom: 8
         };
 
-        cp_icon_url = '{{=URL('static','images/icon-control-unselected-1-hori.png')}}';
+//        cp_icon_url = '{{=URL('static','images/icon-control-unselected-1-hori.png')}}';
         window.map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
     }
@@ -311,6 +316,7 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
         "{{=URL('static','js/angular/app.js')}}",
         "{{=URL('static','js/angular/map/map.js')}}",
         "{{=URL('static','js/angular/menu/menu.js')}}",
+        "{{=URL('static','js/angular/modal/modal.js')}}",
         "{{=URL('static','lib/angular/components/version/version.js')}}",
         "{{=URL('static','lib/angular/components/version/version-directive.js')}}",
         "{{=URL('static','lib/angular/components/version/interpolate-filter.js')}}",

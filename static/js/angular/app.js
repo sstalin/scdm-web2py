@@ -5,6 +5,7 @@ angular.module('myApp', [
     'ngRoute',
     'myApp.map',
     'myApp.menu',
+    'myApp.modal',
     'myApp.version'
 ]).
     config(['$routeProvider', '$interpolateProvider', function ($routeProvider, $interpolateProvider) {

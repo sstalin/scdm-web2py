@@ -19,7 +19,7 @@ angular.module('myApp.map', ['ngRoute'])
             $http.get('layers/call/json/lay_all').
                 success(function (data, status, headers, config) {
                     if (MENU_SCOPE.$$phase) {
-                        MENU_SCOPE.$evalAsync(function (scope) {
+                        MENU_SCOPE.$eval(function (scope) {
                             scope.layers = data.layers;
                         });
                     } else {
@@ -34,18 +34,26 @@ angular.module('myApp.map', ['ngRoute'])
                     // or server returns response with an error status.
                 });
 
-            $scope.$watch('map', function (value) {
-                if (value) {
-                    // Set mouseover event for each feature.
-                    $scope.map.data.addListener('click', function (event) {
-                        console.log(event.feature.getProperty('pid'));
-                    });
-                }
-            });
+//            $scope.$watch('map', function (value) {
+//                if (value) {
+//                    // adding click event handler
+//                    $scope.map.data.addListener('click', function (event) {
+//                    //   console.log(event.feature.getProperty('pid'));
+//                        MODAL_SCOPE.pop(event.feature);
+//
+//                    });
+//
+//                }
+//            });
 
 
         }])
 
     .service('MapSrvs', [function () {
-
+        this.resetDataLayer = function () {
+            map.data.forEach(function (next) {
+                    map.data.remove(next);
+                }
+            );
+        };
     }]);

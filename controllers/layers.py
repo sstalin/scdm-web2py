@@ -42,15 +42,15 @@ def call():
 
 
 @service.json
-@auth.requires_login()
 def lay_all():
     """
     All layers that belong to current organization.
 
     :return: list of layers
     """
-    user_info = session.user_info or get_user_info(auth.user_id)
-    layers = db(db.layers.organization == user_info['organization_id']).select(orderby=~db.layers.created_on)
+    if auth.is_logged_in():
+        user_info = session.user_info or get_user_info(auth.user_id)
+        layers = db(db.layers.organization == user_info['organization_id']).select(orderby=~db.layers.created_on)
     return locals()
 
 

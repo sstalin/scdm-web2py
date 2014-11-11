@@ -48,7 +48,8 @@
     padding: 10px 0;
 }
 
-.overlay {
+.overlay,
+.modal-overlay{
     opacity: 0;
     background: #000;
     background: rgb(0, 0, 0);
@@ -63,7 +64,8 @@
     overflow: hidden;
 }
 
-.overlay.on {
+.overlay.on,
+.modal-overlay.on{
     opacity: 0.5;
     display: block;
 }
