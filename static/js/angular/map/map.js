@@ -55,5 +55,6 @@ angular.module('myApp.map', ['ngRoute'])
                     map.data.remove(next);
                 }
             );
+            google.maps.event.clearListeners(map.data, 'click');
         };
     }]);
