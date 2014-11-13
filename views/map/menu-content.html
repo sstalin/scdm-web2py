@@ -1,0 +1,32 @@
+{{if auth.is_logged_in():}}
+<a href="/scdm/layers/lay_manage">
+    <div class="row">
+        <aside class="col-xs-3">
+        {{=IMG(_src=URL('static/images', 'settings-icon.png'), _class="img-responsive")}}
+        </aside>
+        <section class="col-xs-9">
+            <h4 style="line-height: 40px">Manage Layers</h4>
+        </section>
+    </div>
+</a>
+{{pass}}
+<hr>
+<div class="row">
+    <aside class="col-xs-3">
+    {{=IMG(_src=URL('static/images', 'layers-128.png'), _class="img-responsive")}}
+    </aside>
+    <section class="col-xs-9">
+        <h4 style="line-height: 40px">Available Layers</h4>
+    </section>
+</div>
+
+<ul>
+    <li class="list-item clearfix" ng-repeat="layer in layers" ng-click="layToggle(layer)" lay-menu-item>
+        <aside class="col-xs-2"><img src="{{=URL('static', 'images/icon-control-unselected-1-hori.png')}}"></aside>
+        <section class="col-xs-8">{[{layer.name}]}</section>
+        <aside class="col-xs-2 toggle-container">
+            <div class="toggle" ng-class="(layer.isSelected) ? 'on' : 'off'"></div>
+        </aside>
+    </li>
+</ul>
+

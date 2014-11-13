@@ -1,0 +1,29 @@
+#modal{
+    position: absolute;
+    top:50px;
+    left: 0;
+    right:0;
+    bottom: 0;
+}
+
+.modal-container{
+    position: absolute;
+    top:100px;
+    left:25%;
+    right: 25%;
+    background-color: #F7F6EC;
+    display: none;
+    z-index: 2;
+}
+
+.modal-container.on{
+    display: block;
+}
+
+.modal-header{
+padding: 10px;
+}
+
+.modal-body{
+    padding: 10px;
+}

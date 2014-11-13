@@ -1,95 +1,170 @@
 * {
-    -webkit-box-sizing:border-box;
-    box-sizing:border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
-html {}
+
+html {
+}
+
 body {
-    font-family:"Open Sans",sans-serif !important;
-    font-weight:400;
-    font-size:16px;
-    color:#333;
-    background:white;
-    height:100%;
-    padding:0;
-    margin:0;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 400;
+    font-size: 16px;
+    color: #333;
+    background: white;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     position: absolute;
 }
+
 p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd,
 input, form, select, option, button,
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {font-family:"Open Sans",sans-serif font-size:16px;}
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {}
+footer, header, menu, nav, section {
+    font-family: "Open Sans", sans-serif font-size : 16 px;
+}
 
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+}
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-    line-height:1.2;
-    color:#333;
-    font-weight:400;
-    clear:both;
-    margin:0;
-    padding:0;
-}
-h5, h6, .h5, .h6 {color:#666;}
-h1, .h1 {font-weight:300; font-size: 1.438em; /* 23/16 */}
-h2, .h2 {font-weight:600; font-size: 1.188em; /* 19/16 */}
-h3, .h3 {font-size: 1.125em; /* 18/16 */}
-h4, .h4 {font-size: 1em; /* 16/16 */}
-h5, .h5 {font-weight:600; font-size: 0.875em; /* 14/16 */}
-h6, .h6 {font-size: 0.750em; /* 12/16 */}
-big {font-size: 1.25em; /* 20/16 */}
-small {font-size: 0.6875em; /* 11/16 */}
-p {font-size: 0.875em; /* 14/16 */
     line-height: 1.2;
-    padding:0;
-    margin:0;
-    margin-bottom: 1em;
-    color:#666;
+    color: #333;
+    font-weight: 400;
+    clear: both;
+    margin: 0;
+    padding: 0;
 }
-h2 span, .h2 span {font-weight: 300;}
-a {text-decoration: none;}
-b {font-weight:700;}
-strong {font-weight:600;}
-i {font-style: italic;}
-em {font-style:normal; font-weight:300}
+
+h5, h6, .h5, .h6 {
+    color: #666;
+}
+
+h1, .h1 {
+    font-weight: 300;
+    font-size: 1.438em; /* 23/16 */
+}
+
+h2, .h2 {
+    font-weight: 600;
+    font-size: 1.188em; /* 19/16 */
+}
+
+h3, .h3 {
+    font-size: 1.125em; /* 18/16 */
+}
+
+h4, .h4 {
+    font-size: 1em; /* 16/16 */
+}
+
+h5, .h5 {
+    font-weight: 600;
+    font-size: 0.875em; /* 14/16 */
+}
+
+h6, .h6 {
+    font-size: 0.750em; /* 12/16 */
+}
+
+big {
+    font-size: 1.25em; /* 20/16 */
+}
+
+small {
+    font-size: 0.6875em; /* 11/16 */
+}
+
+p {
+    font-size: 0.875em; /* 14/16 */
+    line-height: 1.2;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1em;
+    color: #666;
+}
+
+h2 span, .h2 span {
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+}
+
+b {
+    font-weight: 700;
+}
+
+strong {
+    font-weight: 600;
+}
+
+i {
+    font-style: italic;
+}
+
+em {
+    font-style: normal;
+    font-weight: 300
+}
+
 ul, ol, dl {
     margin-left: 0;
     text-indent: 0;
     list-style-image: none;
     list-style-position: inside;
 }
-ul {list-style-type: disc;}
-ol {list-style-type: decimal;}
-dl {list-style-type: decimal;}
+
+ul {
+    list-style-type: none;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+dl {
+    list-style-type: decimal;
+}
+
 ol ol, ol ul, ul ul, ul ol {
     margin-bottom: 0;
     margin-left: 1em;
     list-style-position: outside;
 }
+
 ul li, ol li, dl dt, dl dd {
     margin-left: 0;
     text-indent: 0;
 }
+
 nav ul li {
     list-style: none outside none;
     /*background: green;*/
     text-align: center;
 }
 
-
-
-
 table, tr, th, td {
     vertical-align: top;
 }
-table {width: 100%;}
-tr {}
-td {}
+
+table {
+    width: 100%;
+}
+
+tr {
+}
+
+td {
+}
 
 /*
 ### Hyperlink styles
@@ -97,152 +172,140 @@ td {}
 <a>Link</a>
 ```
 */
-a, a:link, a:visited, a:hover, a:active {text-decoration: none;}
-a:link {color:#003399;}/* unvisited link */
-a:visited {color:#003399;}/* visited link */
-a:hover {color:#003399;}/* mouse over link */
-a:active {color:#003399;}/* selected link */
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
 
+a:link {
+    color: #003399;
+}
+
+/* unvisited link */
+a:visited {
+    color: #003399;
+}
+
+/* visited link */
+a:hover {
+    color: #003399;
+}
+
+/* mouse over link */
+a:active {
+    color: #003399;
+}
+
+/* selected link */
 
 .content-area {
-    padding:15px;
+    padding: 15px;
     background-color: #fff;
 }
+
 .content {
-    display:none;
+    display: none;
     margin-top: 1em;
 }
+
 .error {
-    color:red;
+    color: red;
 }
+
 .gpu-render {
     /*-webkit-transform: translateZ(0); */
-    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     -webkit-transform-style: flat;
     -webkit-perspective: none;
     -webkit-backface-visibility: hidden;
 }
-.empty-class {
-    color:inherit;
-}
-.shop-list {list-style: none outside none; margin-left: 0;}
 
-/*
-## Store Services List
-### Services Icons
- */
-.services-list {list-style: none outside none; margin: 0;}
-.services-list li {display: block; width: 100%; clear: both;}
-.services-list .button-icon,
-.services-list .button-text {float: left;}
-.services-list .button-icon {}
-.services-list .button-text { height: auto; margin-top: .25em}
-
-/*
-```
-<ul class="services-list">
-    <li>
-        <span class="button-icon sf-icon-home"></span>
-        <span class="button-text">Home</span>
-    </li>
-</ul>
-```
- */
-
-/*
-## List styles */
-.list-plain, .scrollThis {list-style: none outside none;}
-#recommendedProducts ul,
-.field-text,
-.field-error,
-.list-nobullet,
-.list-results,
-.list-notifications {
-    /*background: #eee;*/
+hr {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #d0d0d0;
+    clear: both;
+    height: 1px;
     width: 100%;
-    margin: 0;
     padding: 0;
-    text-indent: 0;
-    text-align: left;
-    list-style: none outside none;
-    float: left;
+    margin: 0.5em 0;
 }
-#recommendedProducts ul li,
-.list-results li,
-.list-notifications li {
-    background: white;
-    padding:10px;
-    margin:0 0 10px;
-    text-align: left;
-}
-.notification-userWelcome {display: none !important;}
-#recommendedProducts ul li {
-    padding:20px 10px 0;
-    margin:0;
-}
-.list-nobullet li {
-    text-align: left;
-    margin: 0;
-    padding: 0;
-}
-.read-true {border-left: none !important;}
-.read-false {border-left: 0.3em solid #FFD02C !important;}
-.present-false {opacity: 0.5 !important}
 
-/*
-## Utility styles
-### Horizontal Rule
-```
-<hr>
-```
-*/
-hr {background:none;
-    border:none;
-    border-bottom:1px solid #d0d0d0;
-    clear:both;
-    height:1px;
-    width: 100%;
-    padding:0;
-    margin:0.5em 0;
-}
 hr.hrPlain {
-    padding:0;
-    margin:0.125em 0;
+    padding: 0;
+    margin: 0.125em 0;
 }
-hr.hrSimple {}
 
-
-
-#loadingDim{
-    height:100%;
-    width:100%;
-    background:#eee;
-    background:rgb(204,204,204);
-    background:rgba(255,255,255,0.5);
-    z-index:3 !important;
-    position:fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
+hr.hrSimple {
 }
+
+#loadingDim {
+    height: 100%;
+    width: 100%;
+    background: #eee;
+    background: rgb(204, 204, 204);
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 3 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
 #loadingSpinner {
     /*background-image:url("../images/loader-blue.svg");*/
-    background:transparent url("../images/spinner-blue-small.gif") center center no-repeat; /* default spinner */
-    position:absolute;
-    z-index:100;
+    /*background: transparent url("../images/spinner-blue-small.gif") center center no-repeat; */
+    position: absolute;
+    z-index: 100;
 }
 
-#scdm-view .footer{
-   border: none;
+
+
+#scdm-view .footer {
+    border: none;
 }
 
-#index-container{
-   width: 100%;
-padding: 0 10px;
+.scdm-container, .menu-content {
+    width: 100%;
+    padding: 0 10px;
 }
 
-#index-container .row{
-padding:15px 0;
+.scdm-logo {
+    line-height: 50px;
+    font-size: 1.6em;
+}
+
+.scdm-container .row {
+    padding: 15px 0;
+}
+
+
+.scdm-container input[type='text'],
+.scdm-container input[type='password'],
+.scdm-container textarea {
+    width: 95%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.scdm-container td {
+    vertical-align: middle;
+}
+
+.lay-tab{
+    padding: 0 10px;
+}
+
+.lay-tab span.lay-name{
+    display: inline-block;
+    max-width: 60%;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+
+.list-item{
+    padding: 10px;
 }
 
