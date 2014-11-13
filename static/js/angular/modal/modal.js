@@ -23,11 +23,13 @@ angular.module('myApp.modal', ['ngRoute'])
 
                 if ($scope.$$phase) {
                     $scope.$eval(function () {
+                        $scope.geometry = event.feature.getGeometry().getType();
                         $scope.keys = Object.keys(event.feature.k);
                         $scope.properties = event.feature.k;
                     });
                 } else {
                     $scope.$apply(function () {
+                        $scope.geometry = event.feature.getGeometry().getType();
                         $scope.keys = Object.keys(event.feature.k);
                         $scope.properties = event.feature.k;
                     });

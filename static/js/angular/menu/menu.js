@@ -18,7 +18,9 @@ angular.module('myApp.menu', ['ngRoute', 'myApp.map'])
                 menuTray = angular.element('.menu-tray'),
                 isMenuOn = false;
 
-
+            /**
+             * Toggles menu on/off
+             */
             function toggleMenu() {
                 isMenuOn = !isMenuOn;
                 if (isMenuOn) {
@@ -43,7 +45,9 @@ angular.module('myApp.menu', ['ngRoute', 'myApp.map'])
                 toggleMenu();
             });
 
-
+            /**
+             * Reset map.data object and adds new selected layers data.
+             */
             function loadLayers() {
                 MapSrvs.resetDataLayer();
                 MenuSrvs.processQueue();
@@ -85,18 +89,10 @@ angular.module('myApp.menu', ['ngRoute', 'myApp.map'])
                 self.queue[index] = null;
             }
 
-
+            /**
+             * Add to map all selected layers(GeoJson files).
+             */
             this.processQueue = function () {
-
-//                var geoJsonObj = { "type": "FeatureCollection",
-//                    "features": []};
-//                self.queue.forEach(function (next) {
-//                    if (next) {
-//                        geoJsonObj.features = geoJsonObj.features.concat(next.features);
-//                    }
-//                });
-//                return geoJsonObj;
-
                 self.queue.forEach(function (next) {
                     if (next) {
                         map.data.addGeoJson(next);
@@ -104,6 +100,12 @@ angular.module('myApp.menu', ['ngRoute', 'myApp.map'])
                 });
             };
 
+            /**
+             * Loads GeoJson file for selected layer from database, and puts it into
+             * self.queue = [] array to be processed on menu close event
+             * @param layer
+             * @param index
+             */
             this.loadGeoJSON = function (layer, index) {
                 var lay_URL = '/scdm/map/download/' + layer.filename;
 

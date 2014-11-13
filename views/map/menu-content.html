@@ -24,7 +24,7 @@
     <li class="list-item clearfix" ng-repeat="layer in layers" ng-click="layToggle(layer)" lay-menu-item>
         <aside class="col-xs-2"><img src="{{=URL('static', 'images/icon-control-unselected-1-hori.png')}}"></aside>
         <section class="col-xs-8">{[{layer.name}]}</section>
-        <aside class="col-xs-2">
+        <aside class="col-xs-2 toggle-container">
             <div class="toggle" ng-class="(layer.isSelected) ? 'on' : 'off'"></div>
         </aside>
     </li>

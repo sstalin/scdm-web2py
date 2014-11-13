@@ -50,6 +50,9 @@ angular.module('myApp.map', ['ngRoute'])
         }])
 
     .service('MapSrvs', [function () {
+        /**
+         * Reset map.data object by removing all features and click handlers.
+         */
         this.resetDataLayer = function () {
             map.data.forEach(function (next) {
                     map.data.remove(next);
