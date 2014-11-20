@@ -81,7 +81,7 @@ def get_role(user_id = auth.user_id):
     return db(db.auth_group.id == group_id).select('role').first().role
 
 
-def set_membership(user=auth.user_id, org_id=None, role='user'):
+def set_membership(user=auth.user_id, org_id=None):
     """
     Set membership with given parameters.
     :param user:
@@ -89,7 +89,25 @@ def set_membership(user=auth.user_id, org_id=None, role='user'):
     :param role:
     :return:
     """
-    return db.membership.insert(auth_user=user, organization=org_id, role=role)
+    return db.membership.insert(auth_user=user, organization=org_id)
+
+
+def create_new_user(fn, ln, email, role):
+    usr_id =db.auth_user.insert(first_name=fn, last_name=ln,
+                                 email=email,
+                                 password=CRYPT()('password')[0])
+    if usr_id > 0:
+        org_id = get_user_info()['organization_id']
+        mem_id = set_membership(usr_id, org_id)
+        group_id = auth.id_group(role)
+        auth_mem_id= auth.add_membership(group_id, usr_id)
+        return usr_id
+    return None
+
+
+def is_email_exist(email):
+    return db(db.auth_user.email == email).count() > 0
+
 
 
 ##################### populate database #####################

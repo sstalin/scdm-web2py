@@ -29,7 +29,7 @@ angular.module('myApp.admin', ['ngRoute'])
             });
 
             $scope.submit = function(){
-                AdminSrvs.removeUsers($scope.list, $scope.$parent);
+                AdminSrvs.removeUsers($scope, $scope.$parent);
             };
 
             $scope.userClick = function (itemScope) {
@@ -42,8 +42,8 @@ angular.module('myApp.admin', ['ngRoute'])
             };
         }])
     .service('AdminSrvs', [
-        '$http',
-        function ($http) {
+        '$http', '$rootScope',
+        function ($http, $rootScope) {
             this.getUsers = function (scope) {
                 var URL = "/scdm/default/users";
                 $http.get(URL).success(function (data, status) {
@@ -55,13 +55,15 @@ angular.module('myApp.admin', ['ngRoute'])
                 });
             };
 
-            this.removeUsers = function(list, scope){
+            this.removeUsers = function(scope, parent){
                 var URL = "/scdm/default/users";
-                var data = {users: list};
+                var data = {users: scope.list};
                 $http.post(URL, data)
                 .success(function (data, status) {
                     if (status == 200) {
-                        scope.users = data.users;
+                        parent.users = data.users;
+                        scope.list = [];
+                        $rootScope.flash = data.flash;
                     }
                 }).error(function (status) {
 

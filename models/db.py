@@ -57,6 +57,8 @@ auth.settings.extra_fields['auth_user'] = [
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
+db.auth_user.email.unique = True
+
 ## configure email
 mail = auth.settings.mailer
 mail.settings.server = 'logging' if request.is_local else 'smtp.gmail.com:587'
