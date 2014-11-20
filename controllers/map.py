@@ -1,6 +1,6 @@
 def index():
-    latitude = 42.0104
-    longitude = -87.4351
+    latitude = 42.023333
+    longitude = -87.790755
     set_up_layers()
     return locals()
 

@@ -1,0 +1,40 @@
+{ "type": "FeatureCollection",
+    "features": [
+       {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-87.7270, 42.040556]
+            },
+            "properties": {
+                "pid": "cp2",
+                "Lat": "42.040556",
+                "Long": "-87.7270"
+            }
+        },
+       {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-87.7485, 42.040556]
+            },
+            "properties": {
+                "pid": "cp3",
+                "Lat": "42.040556",
+                "Long": "-87.7485"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-87.7595, 42.040556]
+            },
+            "properties": {
+                "pid": "cp4",
+                "Lat": "42.040556",
+                "Long": "-87.7595"
+            }
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-timestamp: 2014-11-06T13:05:44.080968
+timestamp: 2014-11-20T01:22:44.784205
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -11,21 +11,21 @@ CREATE TABLE auth_user(
     is_administrator CHAR(1)
 );
 success!
-timestamp: 2014-11-06T13:05:44.085735
+timestamp: 2014-11-20T01:22:44.789531
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2014-11-06T13:05:44.090425
+timestamp: 2014-11-20T01:22:44.794814
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2014-11-06T13:05:44.096940
+timestamp: 2014-11-20T01:22:44.800999
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
@@ -34,7 +34,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2014-11-06T13:05:44.102882
+timestamp: 2014-11-20T01:22:44.808079
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -44,7 +44,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2014-11-06T13:05:44.109282
+timestamp: 2014-11-20T01:22:44.814013
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
@@ -54,19 +54,18 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2014-11-06T13:05:44.115740
+timestamp: 2014-11-20T01:22:44.821425
 CREATE TABLE organization(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),
     members INTEGER
 );
 success!
-timestamp: 2014-11-06T13:05:44.124828
+timestamp: 2014-11-20T01:22:44.830923
 CREATE TABLE membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     auth_user INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
     organization INTEGER REFERENCES organization (id) ON DELETE CASCADE,
-    role CHAR(512),
     is_active CHAR(1),
     created_on TIMESTAMP,
     created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
@@ -74,7 +73,7 @@ CREATE TABLE membership(
     modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2014-11-06T13:05:44.133781
+timestamp: 2014-11-20T01:22:44.840899
 CREATE TABLE layers(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name CHAR(512),

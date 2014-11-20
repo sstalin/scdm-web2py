@@ -19,6 +19,9 @@ def index():
     return auth.wiki()
     """
     if auth.is_logged_in():
+        # # if newly registered user is not in auth_membership add him as an administrator
+        if not db(db.auth_membership.user_id == auth.user_id).count() > 0:
+            auth.add_membership(auth.id_group(ADMIN), auth.user_id)
         session.user_info = get_user_info()
         response.user_info = session.user_info
     if request.user_agent().is_mobile:
@@ -43,6 +46,74 @@ def user():
     to decorate functions that need access control
     """
     form = auth()
+    return dict(form=form)
+
+
+@auth.requires_permission('add', 'users')
+def admin():
+    return dict()
+
+
+def people():
+    """
+    People in organization
+    :return: list of users
+    """
+    # users = get_users()
+    return dict()
+
+# @service.json
+# def users():
+#     """
+#     People in organization
+#     :return: list of users
+#     """
+#     users = get_users()
+#     return users
+
+
+@request.restful()
+def users():
+    response.view = 'generic.json'
+
+    def GET(*args,**vars):
+         users = get_users()
+         return dict(users=users)
+
+    def POST(*args,**vars):
+        users = vars['users']
+        count = 0
+        for user in users:
+            if user:
+                count += db(db.auth_user.id == user.get('auth_user').get('id')).delete()
+        response.flash = str(count) + " users deleted!"
+        users = get_users()
+        return dict(users=users)
+    return locals()
+
+
+def add_user():
+    form = FORM(
+        LABEL('First Name:', _for='first_name'),
+        INPUT(_name='first_name', _type='text', requires=IS_NOT_EMPTY()),
+        LABEL('Last Name:', _for='last_name'),
+        INPUT(_name='last_name', _type='text', requires=IS_NOT_EMPTY()),
+        LABEL('Email:', _for='email'),
+        INPUT(_name='email', _type='email', requires=IS_NOT_EMPTY()),
+        DIV(INPUT(_name='isAdmin', _type='checkbox'),
+            LABEL('Administrator', _for='isAdmin')),
+        BR(),
+        DIV(INPUT(_name='isDataManager', _type='checkbox'),
+            LABEL('Data Manager', _for='isDataManager')),
+        BR(),
+        DIV(INPUT(_name='sendEmail', _type='checkbox'),
+            LABEL('Send Email', _for='sendEmail')),
+        INPUT(_value='+ Add User', _type='submit', _class='right'),
+        INPUT(_value='Reset', _type='reset', _class='right btn')
+    )
+    form.process()
+    if form.accepted:
+        pass
     return dict(form=form)
 
 

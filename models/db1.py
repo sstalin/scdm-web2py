@@ -1,7 +1,7 @@
 __author__ = 'sstalin'
 
 NE = IS_NOT_EMPTY()
-MANAGER, USER = "data_manager", "user"
+ADMIN, MANAGER, USER = "administrator", "data_manager", "user"
 SHOW_FOOTER = False
 
 # initially each organization will have up to 10 accounts
@@ -17,7 +17,6 @@ db.define_table(
     'membership',
     Field('auth_user', 'reference auth_user', readable=False, writable=False),
     Field('organization', 'reference organization'),
-    Field('role', requires=IS_IN_SET((MANAGER, USER))),
     auth.signature)
 
 db.membership.auth_user.requires = IS_NOT_IN_DB(db(db.membership.organization == request.vars.organization),
@@ -34,6 +33,8 @@ db.define_table(
     Field('filename', 'upload', autodelete=True),
     auth.signature)
 
+
+## HELPERS
 
 def get_user_info(user=auth.user_id):
     """
@@ -56,8 +57,58 @@ def get_user_info(user=auth.user_id):
         return {}
 
 
+def get_users(organization=None):
+    """
+    Retrieves all users for given organization.
+    :param org_id:
+    :return: list of users
+    """
+    org_id = organization or db(db.membership.auth_user == auth.user_id).select('organization').first().organization
+    users_in_organization = db((db.membership.organization == db.organization.id)
+                               & (db.auth_user.id == db.membership.auth_user)
+                               & (db.organization.id == org_id)
+                               & (db.auth_user.id != auth.user_id)).select()
+    return users_in_organization
+
+
+def get_role(user_id = auth.user_id):
+    """
+    Retrieves role for given user id
+    :param user_id:
+    :return: role associated with user
+    """
+    group_id = db(db.auth_membership.user_id == user_id).select('group_id').first().group_id
+    return db(db.auth_group.id == group_id).select('role').first().role
+
+
 def set_membership(user=auth.user_id, org_id=None, role='user'):
+    """
+    Set membership with given parameters.
+    :param user:
+    :param org_id:
+    :param role:
+    :return:
+    """
     return db.membership.insert(auth_user=user, organization=org_id, role=role)
+
+
+##################### populate database #####################
+
+if db(db.auth_group).isempty():
+    ### create groups
+    admin_group_id = auth.add_group(ADMIN, 'Administrator role')
+    manager_group_id = auth.add_group(MANAGER, 'Manager role')
+    user_group_id = auth.add_group(USER, 'Regular user role')
+
+if db(db.auth_permission).isempty():
+    ## add permissions for administrators
+    auth.add_permission(admin_group_id, 'add', 'users')
+    auth.add_permission(admin_group_id, 'remove', 'users')
+    auth.add_permission(manager_group_id, 'manage', 'layers')
+    ## add permissions for data managers
+    auth.add_permission(manager_group_id, 'manage', 'layers')
+    ## add permissions for regular user
+    auth.add_permission(user_group_id, 'read', db.layers, 0)
 
 
 if db(db.auth_user).isempty():
@@ -70,9 +121,32 @@ if db(db.auth_user).isempty():
                                 email='ss@example.com',
                                 password=CRYPT()('test')[0])
 
-    populate(db.organization, 4)
     populate(db.auth_user, 8)
-    populate(db.membership, 10)
-
-    db(db.membership.auth_user < 3).update(role=MANAGER)
     db(db.auth_user.id > 2).update(is_administrator=False)
+
+    users = db(db.auth_user).select()
+    org_id = db.organization.insert(name="ss_Solution")
+    for user in users[0:5]:
+        user_id = user.id
+        db.membership.insert(auth_user=user_id, organization=org_id)
+        auth.add_membership(user_group_id, user_id)
+
+    org_id = db.organization.insert(name="X_Solution")
+    for user in users[5:10]:
+        user_id = user.id
+        db.membership.insert(auth_user=user_id, organization=org_id)
+        auth.add_membership(user_group_id, user_id)
+
+    db(db.organization.name == "ss_Solution").update(members=5)
+    db(db.organization.name == "X_Solution").update(members=5)
+
+    db(db.auth_membership.id < 3).update(group_id=admin_group_id)
+    db(db.auth_membership.id > 8).update(group_id=admin_group_id)
+
+
+    # populate(db.organization, 4)
+    # populate(db.auth_user, 8)
+    # populate(db.membership, 10)
+    #
+    # db(db.membership.auth_user < 3).update(role=MANAGER)
+    # db(db.auth_user.id > 2).update(is_administrator=False)

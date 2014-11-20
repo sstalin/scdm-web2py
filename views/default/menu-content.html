@@ -10,6 +10,8 @@
 <a href="/scdm/default/user/logout">{{=H2(SPAN("LOGOUT"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
 <hr>
 <a href="/scdm/default/user/profile">{{=H2(SPAN("PROFILE"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
-<hr>
-<a href="/scdm">{{=H2(SPAN("ADD PEOPLE"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+    {{if auth.has_membership(auth.id_group(ADMIN), auth.user_id):}}
+    <hr>
+    <a href="/scdm/default/admin/people">{{=H2(SPAN("PEOPLE"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+    {{pass}}
 {{pass}}

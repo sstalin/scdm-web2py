@@ -289,9 +289,32 @@ hr.hrSimple {
     margin: 0 auto;
 }
 
+.scdm-form input[type='text'],
+.scdm-form input[type='password'],
+.scdm-form input[type='email']{
+    width: 80%;
+    display: block;
+    margin: 0 auto 15px;
+}
 
+.scdm-form input[type='checkbox']{
+    margin: 10px;
+}
+
+
+.scdm-form .btn{
+   margin: 10px;
+}
 .scdm-container td {
     vertical-align: middle;
+}
+
+.scdm-container .scdm-btn-group{
+    padding: 15px;
+}
+
+.scdm-container .btn{
+    color:#666;
 }
 
 .lay-tab{
