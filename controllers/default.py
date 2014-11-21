@@ -96,7 +96,7 @@ def users():
 
 def add_user():
     """
-    Adds new user to database with default password : password.
+    Adds new user with selected rights to database with default password : password. Email is sent optionally.
     :return:
     """
     form = FORM(
