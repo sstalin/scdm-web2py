@@ -19,8 +19,9 @@ angular.module('myApp.admin', ['ngRoute'])
     ['$scope', 'AdminSrvs',
         function ($scope, AdminSrvs) {
             $scope.list = [];
+            $scope.activeCheckBoxList = [];
 
-            $scope.$watch('list.length', function(value){
+            $scope.$watch('activeCheckBoxList.length', function(value){
                if(value > 0){
                    $scope.showRemove = true;
                }else{
@@ -35,8 +36,10 @@ angular.module('myApp.admin', ['ngRoute'])
             $scope.userClick = function (itemScope) {
                 if (itemScope.checkBox === "on" || itemScope.checkBox == undefined) {
                     $scope.list[itemScope.$index] = itemScope.user;
+                    $scope.activeCheckBoxList.push(1);
                 } else if (itemScope.checkBox === "off") {
-                     $scope.list.splice(itemScope.$index, 1);
+                    $scope.list.splice(itemScope.$index, 1);
+                    $scope.activeCheckBoxList.pop();
                 }
 
             };
@@ -63,6 +66,7 @@ angular.module('myApp.admin', ['ngRoute'])
                     if (status == 200) {
                         parent.users = data.users;
                         scope.list = [];
+                        scope.activeCheckBoxList = [];
                         $rootScope.flash = data.flash;
                     }
                 }).error(function (status) {

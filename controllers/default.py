@@ -134,6 +134,7 @@ def add_user():
             usr_id = create_new_user(fn, ln, email, role)
             if usr_id > 0:
                 if form.vars.sendEmail:
+                    # TODO
                     response.flash = "Invitation has been sent"
                 else:
                     response.flash = 'User added successfully'

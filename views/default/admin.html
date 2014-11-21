@@ -13,7 +13,7 @@
             <button class="left btn" ng-show="showRemove" ng-click="submit()">Remove Selected</button>
         {{=A(BUTTON("+ Add User"), _href=URL('admin', args='add-user'), _class='right')}}
         </div>
-        <ul>
+        <ul class="scdm-list">
             <li class="row" ng-repeat="user in users">
                 <aside class="col-xs-2">
                     <input type="checkbox" ng-model="checkBox" ng-true-value="off" ng-false-value="on"

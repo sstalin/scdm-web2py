@@ -1,0 +1,17 @@
+2014/11/20 16:18:59 INFO  - jmeter.util.JMeterUtils: Setting Locale to en_US 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: Loading user properties from: /usr/local/Cellar/jmeter/2.11/libexec/bin/user.properties 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: Loading system properties from: /usr/local/Cellar/jmeter/2.11/libexec/bin/system.properties 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: Copyright (c) 1998-2014 The Apache Software Foundation 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: Version 2.11 r1554548 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: java.version=1.7.0_67 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: os.name=Mac OS X 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: os.arch=x86_64 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: os.version=10.8.5 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: file.encoding=UTF-8 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: Default Locale=English (United States) 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: JMeter  Locale=English (United States) 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: JMeterHome=/usr/local/Cellar/jmeter/2.11/libexec 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: user.dir  =/Users/sstalin/PycharmProjects/SCDM/web2py/applications/scdm 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: PWD       =/Users/sstalin/PycharmProjects/SCDM/web2py/applications/scdm 
+2014/11/20 16:18:59 INFO  - jmeter.JMeter: IP: 151.149.10.45 Name: ushofml314471.kih.kmart.com FullName: 151.149.10.45 

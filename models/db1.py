@@ -93,11 +93,19 @@ def set_membership(user=auth.user_id, org_id=None):
 
 
 def create_new_user(fn, ln, email, role):
+    """
+    Creates new user and membership.
+    :param fn:
+    :param ln:
+    :param email:
+    :param role:
+    :return:
+    """
     usr_id =db.auth_user.insert(first_name=fn, last_name=ln,
                                  email=email,
                                  password=CRYPT()('password')[0])
     if usr_id > 0:
-        org_id = get_user_info()['organization_id']
+        org_id = get_user_info().get('organization_id')
         mem_id = set_membership(usr_id, org_id)
         group_id = auth.id_group(role)
         auth_mem_id= auth.add_membership(group_id, usr_id)

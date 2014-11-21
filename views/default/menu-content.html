@@ -1,5 +1,6 @@
+<a href="/scdm/map">{{=H2(SPAN("MAP"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
+<hr>
 {{if not auth.is_logged_in():}}
-
 <a href="/scdm/default/user">{{=H2(SPAN("LOGIN"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
 <hr>
 <a href="/scdm/default/user/register">{{=H2(SPAN("REGISTER"),SPAN('', _class="scdm-icon-arrow-r right"), _class='menu-tab')}}</a>
