@@ -2,7 +2,7 @@
 <div class="scdm-container container-fluid" ng-controller="AdminCtrl">
 {{if request.args(0) == 'add-user':}}
     <div class="scdm-form">
-        <h2>Add User</h2>
+        <h2 class="scdm-title">Add User</h2>
         <br>
     {{=LOAD('default','add_user.load',ajax=True)}}
     </div>

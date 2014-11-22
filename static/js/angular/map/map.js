@@ -54,7 +54,7 @@ angular.module('myApp.map', ['ngRoute'])
          * Reset map.data object by removing all features and click handlers.
          */
         this.resetDataLayer = function () {
-            if(map){
+            if(window.map){
                 map.data.forEach(function (next) {
                     map.data.remove(next);
                 }

@@ -600,3 +600,4 @@ print\040db(db.auth_membership).select()
 print\040db(db.auth_membership.group_id).select()
 db(db.auth_user).select()
 db(db.auth_user.id\040==\04020).delete()
+db.auth_user.fields
