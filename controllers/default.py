@@ -100,11 +100,11 @@ def add_user():
     :return:
     """
     form = FORM(
-        LABEL('First Name:', _for='first_name'),
+        H4('First Name:', _for='first_name'),
         INPUT(_name='first_name', _type='text', requires=IS_NOT_EMPTY()),
-        LABEL('Last Name:', _for='last_name'),
+        H4('Last Name:', _for='last_name'),
         INPUT(_name='last_name', _type='text', requires=IS_NOT_EMPTY()),
-        LABEL('Email:', _for='email'),
+        H4('Email:', _for='email'),
         INPUT(_name='email', _type='email', requires=IS_NOT_EMPTY()),
         DIV(INPUT(_name='isAdmin', _type='checkbox'),
             LABEL('Administrator', _for='isAdmin')),
