@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+<div class="scdm-container container-fluid" ng-controller="AdminCtrl">
+{{if request.args(0) == 'add-user':}}
+    <div class="scdm-form">
+        <h2 class="scdm-title">Add User</h2>
+    {{=LOAD('default','add_user.load',ajax=True)}}
+    </div>
+{{pass}}
+{{if request.args(0) == 'people':}}
+    <div ng-controller="UsersCtrl">
+        <div class="clearfix scdm-btn-group">
+            <button class="left btn" ng-show="showRemove" ng-click="submit()">Remove Selected</button>
+        {{=A(BUTTON("+ Add User"), _href=URL('admin', args='add-user'), _class='right')}}
+        </div>
+        <ul class="scdm-list">
+            <li class="row" ng-repeat="user in users">
+                <aside class="col-xs-2">
+                    <input type="checkbox" ng-model="checkBox" ng-true-value="off" ng-false-value="on"
+                           ng-click="userClick(this)">
+                </aside>
+                <section class="col-xs-6">
+                    <h4><span>{[{user.auth_user.first_name}]}</span>&nbsp;<span>{[{user.auth_user.last_name}]}</span>
+                    </h4>
+                    <small><b>{[{user.auth_user.email}]}</b></small>
+                </section>
+                <aside class="col-xs-2">
+
+                </aside>
+            </li>
+        </ul>
+    </div>
+
+{{pass}}
+</div>

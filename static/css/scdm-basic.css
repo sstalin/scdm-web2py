@@ -176,6 +176,10 @@ a, a:link, a:visited, a:hover, a:active {
     text-decoration: none;
 }
 
+a .glyphicon {
+    color: #666;
+}
+
 a:link {
     color: #003399;
 }
@@ -252,7 +256,6 @@ hr.hrSimple {
     right: 0;
 }
 
-
 #loadingSpinner {
     /*background-image:url("../images/loader-blue.svg");*/
     /*background: transparent url("../images/spinner-blue-small.gif") center center no-repeat; */
@@ -260,15 +263,13 @@ hr.hrSimple {
     z-index: 100;
 }
 
-
-
 #scdm-view .footer {
     border: none;
 }
 
 .scdm-container, .menu-content {
     width: 100%;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
 .scdm-logo {
@@ -276,10 +277,18 @@ hr.hrSimple {
     font-size: 1.6em;
 }
 
+.scdm-title {
+    padding: 10px 0;
+}
+
+.scdm-list li {
+    padding: 15px 0;
+    border-top: 1px #999 solid;
+}
+
 .scdm-container .row {
     padding: 15px 0;
 }
-
 
 .scdm-container input[type='text'],
 .scdm-container input[type='password'],
@@ -289,23 +298,63 @@ hr.hrSimple {
     margin: 0 auto;
 }
 
+.scdm-form div.error,
+.scdm-form input[type='text'],
+.scdm-form input[type='password'],
+.scdm-form input[type='email'] {
+    width: 80%;
+    display: block;
+    margin: 6px auto 15px 10%;
+    text-indent: 15px;
+    font-style: italic;
+    color: #999;
+}
+
+.scdm-form input[type='checkbox'] {
+    margin: 10px;
+}
+
+.scdm-form .btn {
+    padding: 10px;
+}
 
 .scdm-container td {
     vertical-align: middle;
 }
 
-.lay-tab{
+/*.scdm-container .scdm-btn-group{*/
+/*padding: 15px;*/
+/*}*/
+
+.scdm-container .btn {
+    color: #666;
+}
+
+.scdm-container button,
+.scdm-container input[type='button'],
+.scdm-container input[type='submit'] {
+    margin: 0 10%;
+}
+
+.scdm-btn-group button,
+.scdm-btn-group input[type='button'],
+.scdm-btn-group input[type='submit'] {
+    padding: 10px 15px;
+    margin: 15px 0;
+}
+
+.lay-tab {
     padding: 0 10px;
 }
 
-.lay-tab span.lay-name{
+.lay-tab span.lay-name {
     display: inline-block;
     max-width: 60%;
     text-overflow: ellipsis;
     overflow-x: hidden;
 }
 
-.list-item{
+.list-item {
     padding: 10px;
 }
 

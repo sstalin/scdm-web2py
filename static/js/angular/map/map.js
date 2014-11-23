@@ -54,10 +54,12 @@ angular.module('myApp.map', ['ngRoute'])
          * Reset map.data object by removing all features and click handlers.
          */
         this.resetDataLayer = function () {
-            map.data.forEach(function (next) {
+            if(window.map){
+                map.data.forEach(function (next) {
                     map.data.remove(next);
                 }
             );
             google.maps.event.clearListeners(map.data, 'click');
+            }
         };
     }]);

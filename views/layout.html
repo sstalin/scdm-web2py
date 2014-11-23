@@ -76,7 +76,7 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
 <body>
 <!-- Navbar ================================================== -->
 <div class="navbar navbar-inverse">
-    <div class="flash">{{=response.flash or ''}}</div>
+    <div class="flash" flash>{{=response.flash or ''}}</div>
     <div class="navbar-inner">
         <div class="container">
         {{is_mobile=request.user_agent().is_mobile}}
@@ -169,17 +169,30 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUCfUDlPNC-vtnlyJ1XNs-sFU0UurSsn4">
 </script>
 <script type="text/javascript">
+    function createMap(options) {
+        window.map = new google.maps.Map(document.getElementById('map-canvas'),
+                options);
+    }
     function initialize() {
-        var longitude = {{=longitude}};
-        var latitude = {{=latitude}};
-        var mapOptions = {
+        var latitude, longitude, mapOptions = {};
+        if (navigator.hasOwnProperty('geolocation')) {
+            navigator.geolocation.getCurrentPosition(function (location) {
+                latitude = location.coords.latitude;
+                longitude = location.coords.longitude;
+                mapOptions = {
+                    center: { lat: latitude, lng: longitude},
+                    zoom: 8
+                };
+                createMap(mapOptions);
+            });
+        }
+        longitude = {{=longitude}};
+        latitude = {{=latitude}};
+        mapOptions = {
             center: { lat: latitude, lng: longitude},
             zoom: 8
         };
-
-//        cp_icon_url = '{{=URL('static','images/icon-control-unselected-1-hori.png')}}';
-        window.map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
+        createMap(mapOptions);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
@@ -317,16 +330,11 @@ middle_columns = {0:'span12',1:'span9',2:'span6'}[
         "{{=URL('static','js/angular/map/map.js')}}",
         "{{=URL('static','js/angular/menu/menu.js')}}",
         "{{=URL('static','js/angular/modal/modal.js')}}",
+        "{{=URL('static','js/angular/admin/admin.js')}}",
         "{{=URL('static','lib/angular/components/version/version.js')}}",
         "{{=URL('static','lib/angular/components/version/version-directive.js')}}",
-        "{{=URL('static','lib/angular/components/version/interpolate-filter.js')}}",
-//      'scdm/static/lib/angular/bower_components/angular/angular.js',
-//      'scdm/static/lib/angular/bower_components/angular-route/angular-route.js',
-//      'scdm/static/js/angular/app.js',
-//      'scdm/static/js/angular/map/map.js',
-//      'scdm/static/lib/angular/components/version/version.js',
-//      'scdm/static/lib/angular/components/version/version-directive.js',
-//      'scdm/static/lib/angular/components/version/interpolate-filter.js'
+        "{{=URL('static','lib/angular/components/version/interpolate-filter.js')}}"
+//
     ], function () {
         // when all is done, execute bootstrap angular application
         angular.bootstrap(document, ['myApp']);

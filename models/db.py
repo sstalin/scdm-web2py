@@ -53,8 +53,11 @@ plugins = PluginManager()
 auth.settings.extra_fields['auth_user'] = [
     Field('is_administrator', 'boolean', default=DEBUG, writable=DEBUG),
 ]
+
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
+
+db.auth_user.email.unique = True
 
 ## configure email
 mail = auth.settings.mailer
@@ -66,6 +69,7 @@ mail.settings.login = 'username:password'
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
+auth.settings.create_user_groups = None
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key

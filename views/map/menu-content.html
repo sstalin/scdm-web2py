@@ -1,3 +1,25 @@
+<a href={{=URL('default', 'index')}}>
+    <div class="row">
+        <aside class="col-xs-3">
+            <span class="button-icon scdm-icon-house" style="line-height: 40px; font-size: 2em; color:#666;"></span>
+        </aside>
+        <section class="col-xs-9">
+            <h4 style="line-height: 40px">Home</h4>
+        </section>
+    </div>
+</a>
+{{if not auth.is_logged_in():}}
+<a href={{=URL('default', 'user')}}>
+    <div class="row">
+        <aside class="col-xs-3">
+        <span class="button-icon scdm-icon-person-fill" style="line-height: 40px; font-size: 2em; color:#666;"></span>
+        </aside>
+        <section class="col-xs-9">
+            <h4 style="line-height: 40px">Login</h4>
+        </section>
+    </div>
+</a>
+{{pass}}
 {{if auth.is_logged_in():}}
 <a href="/scdm/layers/lay_manage">
     <div class="row">

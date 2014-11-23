@@ -1,19 +1,92 @@
 {{extend "layout.html"}}
 <div class="scdm-container">
-    <h2>{{=T( request.args(0).replace('_',' ').capitalize() )}}</h2>
+    <div class="scdm-title">
+        <h2>{{=T( request.args(0).replace('_',' ').capitalize() )}}</h2>
+    </div>
 
-    <div id="web2py_user_form">
-    {{
-if request.args(0)=='login' and not session.auth_2_factor_user:
+    <div id="web2py_user_form" class="scdm-form">
+    {{if request.args(0)=='login' and not session.auth_2_factor_user:
     if not 'register' in auth.settings.actions_disabled:
-        form.add_button(T('Register'),URL(args='register', vars={'_next': request.vars._next} if request.vars._next else None),_class='btn')
+    form.add_button(T('Register'),URL(args='register', vars={'_next': request.vars._next} if request.vars._next else None),_class='btn')
     pass
     if not 'request_reset_password' in auth.settings.actions_disabled:
-        form.add_button(T('Lost Password'),URL(args='request_reset_password'),_class='btn')
+    form.add_button(T('Lost Password'),URL(args='request_reset_password'),_class='btn')
     pass
-pass
-=form
-}}
+    pass
+    }}
+    {{if request.args(0)=='login': }}
+    {{=form.custom.begin}}
+        <br>
+        <section>
+            <h4>Email:</h4>
+        {{=form.custom.widget.email}}
+        </section>
+        <section>
+            <h4>Password:</h4>
+        {{=form.custom.widget.password}}
+        </section>
+        <section style="text-indent: 15px">
+        {{=form.custom.widget.remember_me}}
+            <small>Remember me?</small>
+            &nbsp;|&nbsp;
+        {{if not 'request_reset_password' in auth.settings.actions_disabled:}}
+            <a href={{=URL('default', 'user', args='request_reset_password')}}>
+                <small>Forgot Password?</small>
+            </a>
+        {{pass}}
+        </section>
+        <br>
+        <section>
+        {{=form.custom.submit}}
+        </section>
+    {{=form.custom.end}}
+    {{elif request.args(0)=='register':}}
+    {{=form.custom.begin}}
+        <section>
+            <h4>First Name:</h4>
+        {{=form.custom.widget.first_name}}
+        </section>
+        <section>
+            <h4>Last Name:</h4>
+        {{=form.custom.widget.last_name}}
+        </section>
+        <section>
+            <h4>Email:</h4>
+        {{=form.custom.widget.email}}
+        </section>
+        <section>
+            <h4>Password:</h4>
+        {{=form.custom.widget.password}}
+        </section>
+        <section>
+            <h4>Confirm Password:</h4>
+        {{=form.custom.widget.password_two}}
+        </section>
+        <section>
+        {{=form.custom.submit}}
+        </section>
+    {{=form.custom.end}}
+    {{elif request.args(0)=='profile':}}
+    {{=form.custom.begin}}
+        <section>
+            <h4>First Name:</h4>
+        {{=form.custom.widget.first_name}}
+        </section>
+        <section>
+            <h4>Last Name:</h4>
+        {{=form.custom.widget.last_name}}
+        </section>
+        <section>
+            <h4>Email:</h4>
+        {{=form.custom.widget.email}}
+        </section>
+        <section>
+        {{=form.custom.submit}}
+        </section>
+    {{=form.custom.end}}
+    {{else:}}
+    {{=form}}
+    {{pass}}
     </div>
     <script language="javascript"><!--
     jQuery("#web2py_user_form input:visible:enabled:first").focus();

@@ -1,0 +1,12 @@
+<!--
+<table>
+{{ #for user in users:}}
+    <tr>
+        <td>
+          <h4><span>{{#=user.auth_user.first_name}}</span>&nbsp;<span>{{#=user.auth_user.last_name}}</span></h4>
+<small><b>{{#=user.auth_user.email}}</b></small>
+</td>
+<td><small><b>{{#=get_role(user.auth_user.id)}}</b></small></td>
+</tr>
+#pass}}
+</table> -->
