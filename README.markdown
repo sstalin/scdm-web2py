@@ -1,78 +1,26 @@
-## Readme
+## Overview
 
-web2py is a free open source full-stack framework for rapid development of fast, scalable, secure and portable database-driven web-based applications. 
+SCDM (Survey Control Data Manager) is a mobile optimized web app that allow registered users
+(surveyors/field engineers) to preview/upload map layers containing ground control points data.
+Ground control data will be organized  in projects. Each projects will be in separate layer.
+Currently the app support only GeoJson layer format for displaying on Google Map (http://geojson.org/geojson-spec.html ).
+Based on location search, and layer being toggled in the menu, relevant data points will be displayed  to a user.To non-registered users, data layers on the map may include NGS(National Geodetic Survey) bpoints data, or other local government agency point data if available.
 
-It is written and programmable in Python. LGPLv3 License
+## Prerequisites
 
-Learn more at http://web2py.com
+SCDM is build around web2py and AngularJS. In order to run the project you need to insatll [web2py](http://www.web2py.com) and place the project under applications folder of web2py.  
 
-## Google App Engine deployment
+## Documentation
 
-    cp examples/app.yaml ./
-    cp handlers/gaehandler.py ./
-    
-Then edit ./app.yaml and replace "yourappname" with yourappname.
+SCDM user guide can be found under  docs/SCDMUserGuide.pdf.
 
-## Documentation (readthedocs.org)
+## Sample Test
 
-[![Docs Status](https://readthedocs.org/projects/web2py/badge/?version=latest)](http://web2py.rtfd.org/)
+   For testing purpose use following email/password combination in order to view sample GeoJson layers.
 
-## Tests
 
-[![Build Status](https://travis-ci.org/web2py/web2py.png)](https://travis-ci.org/web2py/web2py)
+    email: ss@example.com
+	password: test
 
-[![Coverage Status](https://coveralls.io/repos/web2py/web2py/badge.png)](https://coveralls.io/r/web2py/web2py)
 
-## Installation Instructions
 
-To start web2py there is NO NEED to install it. Just unzip and do:
-
-    python web2py.py
-
-That's it!!!
-
-## web2py directory structure
-
-    project/
-        README
-        LICENSE
-        VERSION                    > this web2py version
-        web2py.py                  > the startup script
-        anyserver.py               > to run with third party servers
-        ...                        > other handlers and example files
-        gluon/                     > the core libraries
-            contrib/               > third party libraries
-            tests/                 > unittests  
-        applications/              > are the apps
-            admin/                 > web based IDE
-                ...
-            examples/              > examples, docs, links
-                ...
-            welcome/               > the scaffolding app (they all copy it)
-                ABOUT
-                LICENSE
-                models/
-                views/
-                controllers/
-                sessions/
-                errors/
-                cache/
-                static/
-                uploads/
-                modules/
-                cron/
-                tests/
-            ...                    > your own apps
-        examples/                  > example config files, mv .. and customize
-        extras/                    > other files which are required for building web2py
-        scripts/                   > utility and installation scripts
-        handlers/
-            wsgihandler.py         > handler to connect to WSGI
-            ...                    > handlers for Fast-CGI, SCGI, Gevent, etc
-        site-packages/             > additional optional modules
-        logs/                      > log files will go in there
-        deposit/                   > a place where web2py stores apps temporarily
-
-## Issues?
-
-Report issues at http://code.google.com/p/web2py/issues/
