@@ -7,6 +7,10 @@
 	Based on location search, and layer being toggled in the menu, relevant data points will be displayed  to a user.
 	To non-registered users, data layers on the map may include NGS(National Geodetic Survey) bpoints data, or other local government agency point data if available.
 
+## Prerequisites
+
+SCDM is build around web2py and AngularJS. In order to run the project you need to insatll [web2py](http://www.web2py.com) and place the project under applications folder of web2py.  
+
 ## Documentation
 
 SCDM user guide can be found under  docs/SCDMUserGuide.pdf.
