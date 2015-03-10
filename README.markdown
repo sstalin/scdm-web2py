@@ -14,13 +14,7 @@ SCDM is build around web2py and AngularJS. In order to run the project you need 
 
 SCDM user guide can be found under  docs/SCDMUserGuide.pdf.
 
-## Sample Test
 
-   For testing purpose use following email/password combination in order to view sample GeoJson layers.
-
-
-    email: ss@example.com
-	password: test
 
 
 
