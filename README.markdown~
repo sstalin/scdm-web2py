@@ -1,11 +1,15 @@
-## Readme
+## Overview
 
 	SCDM (Survey Control Data Manager) is a mobile optimized web app that allow registered users
 	(surveyors/field engineers) to preview/upload map layers containing ground control points data.
 	Ground control data will be organized  in projects. Each projects will be in separate layer.
 	Currently the app support only GeoJson layer format for displaying on Google Map (http://geojson.org/geojson-spec.html ).
 	Based on location search, and layer being toggled in the menu, relevant data points will be displayed  to a user.
-	To non-registered users, data layers on the map may include NGS(National Geodetic Survey) points data, or other local government agency point data if available.
+	To non-registered users, data layers on the map may include NGS(National Geodetic Survey) bpoints data, or other local government agency point data if available.
+
+## Documentation
+
+SCDM user guide can be found under  docs/SCDMUserGuide.pdf.
 
 ## Sample Test
 
